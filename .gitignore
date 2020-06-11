@@ -16,3 +16,5 @@ web-report/
 package-lock.json
 
 node_modules/
+
+yarn.lock
