@@ -1,11 +1,11 @@
 import React from "react";
-import { View } from "react-native";
-import { Text } from "native-base";
+import { View, Button } from "react-native";
 
 export const Home = () => {
   return (
-    <View>
-      <Text>Landing page</Text>
+    <View accessibilityLabel="homeContainer">
+      <Button title="Sign in" accessibilityLabel="signInButton" />
+      <Button title="Register" accessibilityLabel="registerButton" />
     </View>
   );
 };

@@ -1,7 +1,6 @@
 import React from "react";
-import { StyleSheet, View, TouchableOpacity } from "react-native";
-import { Text } from "native-base";
-import { NavigationContainer, StackActions } from "@react-navigation/native";
+import { StyleSheet } from "react-native";
+import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 
 import { Home } from "./screens/home/Home";

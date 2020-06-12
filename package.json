@@ -9,7 +9,10 @@
     "eject": "expo eject"
   },
   "jest": {
-    "preset": "react-native"
+    "preset": "jest-expo",
+    "transformIgnorePatterns": [
+      "/node_modules/(?!native-base)/"
+    ]
   },
   "dependencies": {
     "@react-native-community/masked-view": "0.1.6",
@@ -34,7 +37,8 @@
     "@babel/core": "^7.8.6",
     "@testing-library/jest-native": "^3.1.0",
     "babel-preset-expo": "~8.1.0",
-    "jest": "^26.0.1"
+    "jest": "^26.0.1",
+    "jest-expo": "^37.0.0"
   },
   "private": true
 }
