@@ -1,6 +1,8 @@
 import React from "react";
 import { View } from "react-native";
-import { render } from "react-native-testing-library";
+import { render, fireEvent } from "react-native-testing-library";
+import { Input, Form as FormNB, Item } from "native-base";
+
 import { Form } from "./Form";
 
 describe("Form", () => {
@@ -34,5 +36,34 @@ describe("Form", () => {
     const viewElement = getAllByA11yLabel("test");
 
     expect(viewElement.length).toBe(1);
+  });
+  it("triggers the onChange event on input", () => {
+    defaultProps.initialState = { email: "" };
+
+    const { getByPlaceholder, getByTestId } = render(
+      <Form {...defaultProps}>
+        {({ state, onChange }) => {
+          const { email } = state;
+          return (
+            <FormNB>
+              <Item>
+                <Input
+                  placeholder="email"
+                  name="email"
+                  value={email}
+                  onChangeText={(value) => onChange({ email: value })}
+                  accessibilityLabel="emailInput"
+                  testID="messageText"
+                />
+              </Item>
+            </FormNB>
+          );
+        }}
+      </Form>,
+    );
+
+    fireEvent(getByPlaceholder("email"), "onChangeText", "test@test.com");
+
+    expect(getByTestId("messageText").props.value).toEqual("test@test.com");
   });
 });

@@ -1,6 +1,19 @@
-import React, { useState } from "react";
-import { View, TouchableOpacity } from "react-native";
+import React, { useState, useEffect } from "react";
+import { View } from "react-native";
 
 export const Form = (props) => {
-  return <View accessibilityLabel="formContainer">{props.children({})}</View>;
+  const [state, setState] = useState(props.initialState);
+
+  const onChange = (e) => {
+    setState({
+      ...state,
+      ...e,
+    });
+  };
+
+  return (
+    <View accessibilityLabel="formContainer">
+      {props.children({ state, onChange })}
+    </View>
+  );
 };
