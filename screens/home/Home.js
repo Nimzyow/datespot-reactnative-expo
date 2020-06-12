@@ -5,11 +5,9 @@ import { Button, Text } from "native-base";
 export const Home = () => {
   return (
     <View accessibilityLabel="homeContainer">
-      <Text>LAURA</Text>
-      <Button title="Sign in" accessibilityLabel="signInButton">
+      <Button accessibilityLabel="getStarted">
         <Text>Hello</Text>
       </Button>
-      <Button title="Register" accessibilityLabel="registerButton" />
     </View>
   );
 };

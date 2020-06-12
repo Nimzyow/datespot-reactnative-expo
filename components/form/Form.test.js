@@ -49,10 +49,8 @@ describe("Form", () => {
               <Item>
                 <Input
                   placeholder="email"
-                  name="email"
                   value={email}
                   onChangeText={(value) => onChange({ email: value })}
-                  accessibilityLabel="emailInput"
                   testID="messageText"
                 />
               </Item>
