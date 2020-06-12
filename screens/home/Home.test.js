@@ -1,7 +1,7 @@
 import React from "react";
 import { render } from "react-native-testing-library";
 import { Home } from "./Home";
-jest.mock("native-base");
+
 it("renders app view without error", () => {
   const { getAllByA11yLabel } = render(<Home />);
 
@@ -10,7 +10,7 @@ it("renders app view without error", () => {
   expect(homeContainer.length).toBe(1);
 });
 
-it("renders sign in and sign out button", () => {
+it("renders sign in and register button", () => {
   const { getAllByA11yLabel } = render(<Home />);
 
   const signInButton = getAllByA11yLabel("signInButton");
