@@ -17,7 +17,11 @@ export default function App() {
           component={Home}
           options={{ title: "DateSpot" }}
         />
-        <Stack.Screen name="authentication" component={Authentication} />
+        <Stack.Screen
+          name="authentication"
+          component={Authentication}
+          options={{ title: "DateSpot" }}
+        />
       </Stack.Navigator>
     </NavigationContainer>
   );
