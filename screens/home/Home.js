@@ -2,10 +2,13 @@ import React from "react";
 import { View } from "react-native";
 import { Button, Text } from "native-base";
 
-export const Home = () => {
+export const Home = ({ navigation }) => {
   return (
     <View accessibilityLabel="homeContainer">
-      <Button accessibilityLabel="getStarted">
+      <Button
+        accessibilityLabel="getStarted"
+        onPress={() => navigation.navigate("authentication")}
+      >
         <Text>Hello</Text>
       </Button>
     </View>
