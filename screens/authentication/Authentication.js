@@ -2,25 +2,26 @@ import React from "react";
 import { StyleSheet, View } from "react-native";
 import { Input, Form as FormNB, Item, Text } from "native-base";
 
-import { Form } from "../../components/form/Form";
+import { FormCreater } from "../../components/form/Form";
 
 export const Authentication = () => {
   return (
     <View>
-      <Form
+      <FormCreater
         initialState={{
           username: "",
           email: "",
           password: "",
           password2: "",
         }}
+        formName="Register"
+        buttonLabel="Submit"
       >
         {({ state, onChange }) => {
           const { username, email, password, password2 } = state;
 
           return (
-            <FormNB>
-              <Text style={styles.header}>Register</Text>
+            <View>
               <Item>
                 <Input
                   placeholder="username"
@@ -49,17 +50,10 @@ export const Authentication = () => {
                   onChangeText={(value) => onChange({ password2: value })}
                 />
               </Item>
-            </FormNB>
+            </View>
           );
         }}
-      </Form>
+      </FormCreater>
     </View>
   );
 };
-
-const styles = StyleSheet.create({
-  header: {
-    fontSize: 30,
-    textAlign: "center",
-  },
-});
