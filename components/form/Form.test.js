@@ -1,7 +1,7 @@
 import React from "react";
 import { View } from "react-native";
 import { render, fireEvent } from "react-native-testing-library";
-import { Input, Form as FormNB, Item } from "native-base";
+import { Input, Item } from "native-base";
 
 import { FormCreater } from "./Form";
 
@@ -100,5 +100,8 @@ describe("Form", () => {
     fireEvent.press(getByText(defaultProps.buttonLabel));
 
     expect(defaultProps.handleSubmit).toHaveBeenCalledTimes(1);
+    expect(defaultProps.handleSubmit).toHaveBeenCalledWith({
+      email: "test@test.com",
+    });
   });
 });

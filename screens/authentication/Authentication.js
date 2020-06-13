@@ -1,59 +1,42 @@
-import React from "react";
-import { StyleSheet, View } from "react-native";
-import { Input, Form as FormNB, Item, Text } from "native-base";
+import React, { useState } from "react";
+import { View } from "react-native";
+import { Text } from "native-base";
 
-import { FormCreater } from "../../components/form/Form";
+import { RegisterForm } from "./RegisterForm";
+import { LoginForm } from "./LoginForm";
 
 export const Authentication = () => {
+  const [form, setForm] = useState("register");
+
+  const handleSubmit = (state) => {
+    console.log("state", state);
+  };
+
   return (
     <View>
-      <FormCreater
-        initialState={{
-          username: "",
-          email: "",
-          password: "",
-          password2: "",
-        }}
-        formName="Register"
-        buttonLabel="Submit"
-      >
-        {({ state, onChange }) => {
-          const { username, email, password, password2 } = state;
-
-          return (
-            <View>
-              <Item>
-                <Input
-                  placeholder="username"
-                  value={username}
-                  onChangeText={(value) => onChange({ username: value })}
-                />
-              </Item>
-              <Item>
-                <Input
-                  placeholder="email"
-                  value={email}
-                  onChangeText={(value) => onChange({ email: value })}
-                />
-              </Item>
-              <Item>
-                <Input
-                  placeholder="password"
-                  value={password}
-                  onChangeText={(value) => onChange({ password: value })}
-                />
-              </Item>
-              <Item last>
-                <Input
-                  placeholder="password2"
-                  value={password2}
-                  onChangeText={(value) => onChange({ password2: value })}
-                />
-              </Item>
-            </View>
-          );
-        }}
-      </FormCreater>
+      {form === "register" ? (
+        <View>
+          <RegisterForm handleSubmit={handleSubmit} />
+          <Text
+            onPress={() => {
+              setForm("login");
+            }}
+          >
+            Registered already? Press here to sign in
+          </Text>
+        </View>
+      ) : (
+        <View>
+          <LoginForm handleSubmit={handleSubmit} />
+          <Text
+            onPress={() => {
+              setForm("register");
+            }}
+          >
+            Not Registered yet? Press here to register
+          </Text>
+        </View>
+      )}
     </View>
   );
 };
