@@ -10,12 +10,10 @@ it("renders app view without error", () => {
   expect(homeContainer.length).toBe(1);
 });
 
-it("renders sign in and register button", () => {
+it("renders get started button", () => {
   const { getAllByA11yLabel } = render(<Home />);
 
-  const signInButton = getAllByA11yLabel("signInButton");
-  const signOutButton = getAllByA11yLabel("registerButton");
+  const getStarted = getAllByA11yLabel("getStarted");
 
-  expect(signInButton.length).toBe(1);
-  expect(signOutButton.length).toBe(1);
+  expect(getStarted.length).toBe(1);
 });

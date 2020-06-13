@@ -1,15 +1,16 @@
 import React from "react";
-import { View } from "react-native";
+import { View, StyleSheet } from "react-native";
 import { Button, Text } from "native-base";
 
-export const Home = () => {
+export const Home = ({ navigation }) => {
   return (
     <View accessibilityLabel="homeContainer">
-      <Text>LAURA</Text>
-      <Button title="Sign in" accessibilityLabel="signInButton">
+      <Button
+        accessibilityLabel="getStarted"
+        onPress={() => navigation.navigate("authentication")}
+      >
         <Text>Hello</Text>
       </Button>
-      <Button title="Register" accessibilityLabel="registerButton" />
     </View>
   );
 };

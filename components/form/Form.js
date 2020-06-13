@@ -1,6 +1,35 @@
-import React, { useState } from "react";
-import { View, TouchableOpacity } from "react-native";
+import React, { useState, useEffect } from "react";
+import { View, StyleSheet } from "react-native";
+import { Form, Text, Button } from "native-base";
 
-export const Form = (props) => {
-  return <View accessibilityLabel="formContainer">{props.children({})}</View>;
+export const FormCreater = (props) => {
+  const [state, setState] = useState(props.initialState);
+
+  const onChange = (e) => {
+    setState({
+      ...state,
+      ...e,
+    });
+  };
+
+  const onSubmit = () => {
+    props.handleSubmit(state);
+  };
+
+  return (
+    <Form accessibilityLabel="formContainer">
+      <Text style={styles.header}>{props.formName}</Text>
+      {props.children({ state, onChange })}
+      <Button onPress={onSubmit}>
+        <Text>{props.buttonLabel}</Text>
+      </Button>
+    </Form>
+  );
 };
+
+const styles = StyleSheet.create({
+  header: {
+    fontSize: 30,
+    textAlign: "center",
+  },
+});

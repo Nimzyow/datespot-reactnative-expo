@@ -4,6 +4,7 @@ import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 
 import { Home } from "./screens/home/Home";
+import { Authentication } from "./screens/authentication/Authentication";
 
 export default function App() {
   const Stack = createStackNavigator();
@@ -14,6 +15,11 @@ export default function App() {
         <Stack.Screen
           name="Home"
           component={Home}
+          options={{ title: "DateSpot" }}
+        />
+        <Stack.Screen
+          name="authentication"
+          component={Authentication}
           options={{ title: "DateSpot" }}
         />
       </Stack.Navigator>
