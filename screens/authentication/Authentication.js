@@ -5,7 +5,7 @@ import { Text } from "native-base";
 import { registerForm, loginForm } from "../../Utilities/FormFarm";
 
 export const Authentication = () => {
-  const [form, setForm] = useState("register");
+  const [form, setForm] = useState("login");
 
   const handleSubmit = (state) => {
     console.log("state", state);
@@ -20,6 +20,7 @@ export const Authentication = () => {
             onPress={() => {
               setForm("login");
             }}
+            testID="loginHere"
           >
             Registered already? Press here to sign in
           </Text>
@@ -31,6 +32,7 @@ export const Authentication = () => {
             onPress={() => {
               setForm("register");
             }}
+            testID="registerHere"
           >
             Not Registered yet? Press here to register
           </Text>

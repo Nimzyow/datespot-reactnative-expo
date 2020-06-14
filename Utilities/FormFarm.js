@@ -20,7 +20,7 @@ export const registerForm = (handleSubmit) => {
         const { username, email, password, password2 } = state;
 
         return (
-          <View>
+          <View accessibilityLabel="registerForm">
             <Item>
               <Input
                 placeholder="username"
@@ -74,7 +74,7 @@ export const loginForm = (handleSubmit) => {
         const { email, password } = state;
 
         return (
-          <View>
+          <View accessibilityLabel="loginForm">
             <Item>
               <Input
                 placeholder="email"
