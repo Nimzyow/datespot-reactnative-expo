@@ -10,7 +10,7 @@ describe("authActions", () => {
     jest.clearAllMocks();
     user = { username: "testy", email: "test@test.com", password: "123456" };
   });
-  it("registers user", async () => {
+  it("REGISTER_SUCCESS is called on succesfull registeration of user", async () => {
     mockAxios.post.mockImplementationOnce(async () =>
       Promise.resolve({ data: { token: "greatestTokenInTheUniverse" } }),
     );
@@ -26,6 +26,22 @@ describe("authActions", () => {
       expect(dispatch).toHaveBeenCalledWith({
         type: Types.REGISTER_SUCCESS,
         payload: { token: "greatestTokenInTheUniverse" },
+      });
+    } catch (err) {
+      console.error(err);
+    }
+  });
+  it("REGISTER_FAIL is called when email already exists in database", async () => {
+    mockAxios.post.mockImplementationOnce(async () =>
+      Promise.reject({ response: { data: { msg: "some error" } } }),
+    );
+    try {
+      const response = await registerUser(user);
+      await response(dispatch);
+
+      expect(dispatch).toHaveBeenCalledWith({
+        type: Types.REGISTER_FAIL,
+        payload: "some error",
       });
     } catch (err) {
       console.error(err);
