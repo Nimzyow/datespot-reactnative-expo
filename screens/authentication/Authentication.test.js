@@ -2,8 +2,6 @@ import React from "react";
 import { fireEvent, render } from "react-native-testing-library";
 
 import { Authentication } from "./Authentication";
-import { registerUser } from "../../actions/auth";
-import { loginForm } from "../../Utilities/FormFarm";
 
 describe("Authentication", () => {
   it("should display login form by default", () => {

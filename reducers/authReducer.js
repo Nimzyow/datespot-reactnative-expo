@@ -2,6 +2,7 @@ import * as types from "../actions/types";
 
 const initialState = {
   token: null,
+  isAuthenticated: false,
 };
 
 export default (state = initialState, action) => {
@@ -10,6 +11,13 @@ export default (state = initialState, action) => {
       return {
         ...state,
         token: action.payload,
+        isAuthenticated: true,
+      };
+    case types.REGISTER_FAIL:
+      return {
+        ...state,
+        token: null,
+        isAuthenticated: false,
       };
     default:
       return state;
