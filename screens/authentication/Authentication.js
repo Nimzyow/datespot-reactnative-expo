@@ -2,13 +2,19 @@ import React, { useState } from "react";
 import { View } from "react-native";
 import { Text } from "native-base";
 
-import { registerForm, loginForm } from "../../Utilities/FormFarm";
+import { connect } from "react-redux";
 
-export const Authentication = () => {
+import { registerForm, loginForm } from "../../Utilities/FormFarm";
+import { registerUser } from "../../actions/auth";
+
+export const Authentication = ({ registerUser }) => {
   const [form, setForm] = useState("login");
 
-  const handleSubmit = (state) => {
-    console.log("state", state);
+  const handleSubmit = async (state) => {
+    if (form === "login") {
+    } else if (form === "register") {
+      await registerUser(state);
+    }
   };
 
   return (
@@ -41,3 +47,11 @@ export const Authentication = () => {
     </View>
   );
 };
+
+const mapStateToProps = (state) => ({
+  auth: state.auth,
+});
+
+export default connect(mapStateToProps, {
+  registerUser,
+})(Authentication);
