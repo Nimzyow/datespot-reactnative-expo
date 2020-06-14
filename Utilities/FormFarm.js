@@ -1,10 +1,9 @@
 import React from "react";
+import { FormCreater } from "../components/form/Form";
 import { View } from "react-native";
-import { Input, Item } from "native-base";
+import { Item, Input } from "native-base";
 
-import { FormCreater } from "../../components/form/Form";
-
-export const RegisterForm = ({ handleSubmit }) => {
+export const registerForm = (handleSubmit) => {
   return (
     <FormCreater
       initialState={{
@@ -21,7 +20,7 @@ export const RegisterForm = ({ handleSubmit }) => {
         const { username, email, password, password2 } = state;
 
         return (
-          <View>
+          <View accessibilityLabel="registerForm">
             <Item>
               <Input
                 placeholder="username"
@@ -51,6 +50,45 @@ export const RegisterForm = ({ handleSubmit }) => {
                 secureTextEntry={true}
                 value={password2}
                 onChangeText={(value) => onChange({ password2: value })}
+              />
+            </Item>
+          </View>
+        );
+      }}
+    </FormCreater>
+  );
+};
+
+export const loginForm = (handleSubmit) => {
+  return (
+    <FormCreater
+      initialState={{
+        email: "",
+        password: "",
+      }}
+      handleSubmit={handleSubmit}
+      formName="Login"
+      buttonLabel="Login"
+    >
+      {({ state, onChange }) => {
+        const { email, password } = state;
+
+        return (
+          <View accessibilityLabel="loginForm">
+            <Item>
+              <Input
+                placeholder="email"
+                value={email}
+                autoCapitalize="none"
+                onChangeText={(value) => onChange({ email: value })}
+              />
+            </Item>
+            <Item last>
+              <Input
+                placeholder="password"
+                secureTextEntry={true}
+                value={password}
+                onChangeText={(value) => onChange({ password: value })}
               />
             </Item>
           </View>

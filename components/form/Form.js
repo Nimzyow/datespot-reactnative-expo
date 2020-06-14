@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from "react";
-import { View, StyleSheet } from "react-native";
+import React, { useState } from "react";
+import { StyleSheet } from "react-native";
 import { Form, Text, Button } from "native-base";
 
 export const FormCreater = (props) => {

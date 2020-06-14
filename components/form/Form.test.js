@@ -75,7 +75,7 @@ describe("Form", () => {
   });
   it("clicking submit button calls handleSubmit with state", () => {
     defaultProps.initialState = { email: "" };
-    const { getByA11yValue, getByPlaceholder, getByText } = render(
+    const { getByPlaceholder, getByText } = render(
       <FormCreater {...defaultProps}>
         {({ state, onChange }) => {
           const { email } = state;

@@ -2,36 +2,43 @@ import React, { useState } from "react";
 import { View } from "react-native";
 import { Text } from "native-base";
 
-import { RegisterForm } from "./RegisterForm";
-import { LoginForm } from "./LoginForm";
+import { connect } from "react-redux";
 
-export const Authentication = () => {
-  const [form, setForm] = useState("register");
+import { registerForm, loginForm } from "../../Utilities/FormFarm";
+import { registerUser } from "../../actions/auth";
 
-  const handleSubmit = (state) => {
-    console.log("state", state);
+export const Authentication = ({ registerUser }) => {
+  const [form, setForm] = useState("login");
+
+  const handleSubmit = async (state) => {
+    if (form === "login") {
+    } else if (form === "register") {
+      await registerUser(state);
+    }
   };
 
   return (
     <View>
       {form === "register" ? (
         <View>
-          <RegisterForm handleSubmit={handleSubmit} />
+          {registerForm(handleSubmit)}
           <Text
             onPress={() => {
               setForm("login");
             }}
+            testID="loginHere"
           >
             Registered already? Press here to sign in
           </Text>
         </View>
       ) : (
         <View>
-          <LoginForm handleSubmit={handleSubmit} />
+          {loginForm(handleSubmit)}
           <Text
             onPress={() => {
               setForm("register");
             }}
+            testID="registerHere"
           >
             Not Registered yet? Press here to register
           </Text>
@@ -40,3 +47,11 @@ export const Authentication = () => {
     </View>
   );
 };
+
+const mapStateToProps = (state) => ({
+  auth: state.auth,
+});
+
+export default connect(mapStateToProps, {
+  registerUser,
+})(Authentication);

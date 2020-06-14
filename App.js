@@ -1,37 +1,33 @@
 import React from "react";
-import { StyleSheet } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
+import { Provider } from "react-redux";
 
+import store from "./store";
 import { Home } from "./screens/home/Home";
-import { Authentication } from "./screens/authentication/Authentication";
+import Authentication from "./screens/authentication/Authentication";
 
-export default function App() {
+const App = () => {
   const Stack = createStackNavigator();
 
   return (
-    <NavigationContainer>
-      <Stack.Navigator initialRouteName="Home">
-        <Stack.Screen
-          name="Home"
-          component={Home}
-          options={{ title: "DateSpot" }}
-        />
-        <Stack.Screen
-          name="authentication"
-          component={Authentication}
-          options={{ title: "DateSpot" }}
-        />
-      </Stack.Navigator>
-    </NavigationContainer>
+    <Provider store={store}>
+      <NavigationContainer>
+        <Stack.Navigator initialRouteName="Home">
+          <Stack.Screen
+            name="Home"
+            component={Home}
+            options={{ title: "DateSpot" }}
+          />
+          <Stack.Screen
+            name="authentication"
+            component={Authentication}
+            options={{ title: "DateSpot" }}
+          />
+        </Stack.Navigator>
+      </NavigationContainer>
+    </Provider>
   );
-}
+};
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "#fff",
-    alignItems: "center",
-    justifyContent: "center",
-  },
-});
+export default App;
