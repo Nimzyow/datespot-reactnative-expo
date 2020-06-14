@@ -2,8 +2,7 @@ import React, { useState } from "react";
 import { View } from "react-native";
 import { Text } from "native-base";
 
-import { RegisterForm } from "./RegisterForm";
-import { LoginForm } from "./LoginForm";
+import { registerForm, loginForm } from "../../Utilities/FormFarm";
 
 export const Authentication = () => {
   const [form, setForm] = useState("register");
@@ -16,7 +15,7 @@ export const Authentication = () => {
     <View>
       {form === "register" ? (
         <View>
-          <RegisterForm handleSubmit={handleSubmit} />
+          {registerForm(handleSubmit)}
           <Text
             onPress={() => {
               setForm("login");
@@ -27,7 +26,7 @@ export const Authentication = () => {
         </View>
       ) : (
         <View>
-          <LoginForm handleSubmit={handleSubmit} />
+          {loginForm(handleSubmit)}
           <Text
             onPress={() => {
               setForm("register");

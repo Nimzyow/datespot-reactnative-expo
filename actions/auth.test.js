@@ -11,8 +11,11 @@ describe("authActions", () => {
     user = { username: "testy", email: "test@test.com", password: "123456" };
   });
   it("REGISTER_SUCCESS is called on succesfull registeration of user", async () => {
-    mockAxios.post.mockImplementationOnce(async () =>
-      Promise.resolve({ data: { token: "greatestTokenInTheUniverse" } }),
+    mockAxios.post.mockImplementationOnce(
+      async () =>
+        await Promise.resolve({
+          data: { token: "greatestTokenInTheUniverse" },
+        }),
     );
     try {
       const response = await registerUser(user);
@@ -32,8 +35,9 @@ describe("authActions", () => {
     }
   });
   it("REGISTER_FAIL is called when email already exists in database", async () => {
-    mockAxios.post.mockImplementationOnce(async () =>
-      Promise.reject({ response: { data: { msg: "some error" } } }),
+    mockAxios.post.mockImplementationOnce(
+      async () =>
+        await Promise.reject({ response: { data: { msg: "some error" } } }),
     );
     try {
       const response = await registerUser(user);
