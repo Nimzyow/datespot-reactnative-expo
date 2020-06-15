@@ -36,4 +36,16 @@ describe("authReducer", () => {
 
     expect(authReducer(initialState, action)).toEqual(expectedState);
   });
+  it("calls LOGIN_SUCCESS action", () => {
+    const expectedState = {
+      token: "token",
+      isAuthenticated: true,
+      error: null,
+    };
+    const action = {
+      type: types.LOGIN_SUCCESS,
+      payload: expectedState.token,
+    };
+    expect(authReducer(undefined, action)).toEqual(expectedState);
+  });
 });
