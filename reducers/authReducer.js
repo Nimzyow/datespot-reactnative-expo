@@ -13,6 +13,7 @@ export default (state = initialState, action) => {
         ...state,
         token: action.payload,
         isAuthenticated: true,
+        error: null,
       };
     case types.REGISTER_FAIL:
       return {
@@ -20,6 +21,13 @@ export default (state = initialState, action) => {
         token: null,
         isAuthenticated: false,
         error: action.payload,
+      };
+    case types.LOGIN_SUCCESS:
+      return {
+        ...state,
+        token: action.payload,
+        isAuthenticated: true,
+        error: null,
       };
     default:
       return state;
