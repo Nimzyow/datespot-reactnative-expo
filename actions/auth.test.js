@@ -1,7 +1,12 @@
-import { registerUser } from "./auth";
+import { registerUser, loginUser } from "./auth";
 import mockAxios from "axios";
 import * as Types from "./types";
 jest.mock("axios");
+
+const handleError = (err) => {
+  console.log("err, ", err);
+  expect(true).toBe(false);
+};
 
 describe("authActions", () => {
   let dispatch = jest.fn();
@@ -35,7 +40,7 @@ describe("authActions", () => {
         payload: { token: "greatestTokenInTheUniverse" },
       });
     } catch (err) {
-      console.error(err);
+      handleError(err);
     }
   });
   it("REGISTER_FAIL is called when email already exists in database", async () => {
@@ -52,7 +57,36 @@ describe("authActions", () => {
         payload: "some error",
       });
     } catch (err) {
-      console.error(err);
+      handleError(err);
+    }
+  });
+  it("LOGIN_SUCCESS is called on succesfull login of user", async () => {
+    delete user.username;
+    mockAxios.post.mockImplementationOnce(
+      async () =>
+        await Promise.resolve({
+          data: { token: "greatestTokenInTheUniverse" },
+        }),
+    );
+    try {
+      const response = await loginUser(user);
+
+      await response(dispatch);
+
+      expect(mockAxios.post).toHaveBeenCalledTimes(1);
+      expect(mockAxios.post).toHaveBeenCalledWith(
+        "http://localhost:4000/api/auth",
+        user,
+        {
+          headers: { "Content-Type": "application/json" },
+        },
+      );
+      expect(dispatch).toHaveBeenCalledWith({
+        type: Types.LOGIN_SUCCESS,
+        payload: { token: "greatestTokenInTheUniverse" },
+      });
+    } catch (err) {
+      handleError(err);
     }
   });
 });

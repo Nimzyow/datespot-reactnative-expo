@@ -24,3 +24,27 @@ export const registerUser = (formData) => async (dispatch) => {
     });
   }
 };
+
+export const loginUser = (formData) => async (dispatch) => {
+  const config = {
+    headers: {
+      "Content-Type": "application/json",
+    },
+  };
+  try {
+    const res = await axios.post(
+      "http://localhost:4000/api/auth",
+      formData,
+      config,
+    );
+    dispatch({
+      type: Types.LOGIN_SUCCESS,
+      payload: res.data,
+    });
+  } catch (err) {
+    dispatch({
+      type: Types.LOGIN_FAIL,
+      payload: err.response.data.msg,
+    });
+  }
+};
