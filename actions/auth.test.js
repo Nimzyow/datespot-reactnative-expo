@@ -23,9 +23,13 @@ describe("authActions", () => {
       await response(dispatch);
 
       expect(mockAxios.post).toHaveBeenCalledTimes(1);
-      expect(mockAxios.post).toHaveBeenCalledWith("/api/users", user, {
-        headers: { "Content-Type": "application/json" },
-      });
+      expect(mockAxios.post).toHaveBeenCalledWith(
+        "http://localhost:4000/api/users",
+        user,
+        {
+          headers: { "Content-Type": "application/json" },
+        },
+      );
       expect(dispatch).toHaveBeenCalledWith({
         type: Types.REGISTER_SUCCESS,
         payload: { token: "greatestTokenInTheUniverse" },

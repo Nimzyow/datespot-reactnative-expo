@@ -10,6 +10,7 @@ describe("authReducer", () => {
     const expectedState = {
       token: "token",
       isAuthenticated: true,
+      error: null,
     };
     const action = {
       type: types.REGISTER_SUCCESS,
@@ -21,15 +22,18 @@ describe("authReducer", () => {
     const initialState = {
       token: "greatestTokenEver",
       isAuthenticated: true,
-    };
-
-    const expectedState = {
-      token: null,
-      isAuthenticated: false,
+      error: null,
     };
     const action = {
       type: types.REGISTER_FAIL,
+      payload: "this is an error",
     };
+    const expectedState = {
+      token: null,
+      isAuthenticated: false,
+      error: action.payload,
+    };
+
     expect(authReducer(initialState, action)).toEqual(expectedState);
   });
 });

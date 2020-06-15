@@ -8,7 +8,11 @@ export const registerUser = (formData) => async (dispatch) => {
     },
   };
   try {
-    const res = await axios.post("/api/users", formData, config);
+    const res = await axios.post(
+      "http://localhost:4000/api/users",
+      formData,
+      config,
+    );
     dispatch({
       type: Types.REGISTER_SUCCESS,
       payload: res.data,

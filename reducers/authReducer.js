@@ -3,6 +3,7 @@ import * as types from "../actions/types";
 const initialState = {
   token: null,
   isAuthenticated: false,
+  error: null,
 };
 
 export default (state = initialState, action) => {
@@ -18,6 +19,7 @@ export default (state = initialState, action) => {
         ...state,
         token: null,
         isAuthenticated: false,
+        error: action.payload,
       };
     default:
       return state;
