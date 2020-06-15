@@ -1,17 +1,29 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { View } from "react-native";
 import { Text } from "native-base";
 
 import { connect } from "react-redux";
 
 import { registerForm, loginForm } from "../../Utilities/FormFarm";
-import { registerUser } from "../../actions/auth";
+import { registerUser, loginUser } from "../../actions/auth";
 
-export const Authentication = ({ registerUser }) => {
+export const Authentication = ({
+  registerUser,
+  loginUser,
+  auth: { isAuthenticated },
+  navigation,
+}) => {
   const [form, setForm] = useState("login");
+
+  useEffect(() => {
+    if (isAuthenticated) {
+      navigation.navigate("spots");
+    }
+  }, [isAuthenticated]);
 
   const handleSubmit = async (state) => {
     if (form === "login") {
+      await loginUser(state);
     } else if (form === "register") {
       await registerUser(state);
     }
@@ -54,4 +66,5 @@ const mapStateToProps = (state) => ({
 
 export default connect(mapStateToProps, {
   registerUser,
+  loginUser,
 })(Authentication);
