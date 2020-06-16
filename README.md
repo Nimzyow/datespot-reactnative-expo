@@ -6,9 +6,9 @@ I have decided to stop working on this project in its current form. That is, I w
 
 Reasons for this:
 
-1. Though Expo is a great tool to get something up and running quickly, I am depending on the expo team to update their library. This was made very obvious to me when it came to using AsyncStorage, which is deprecated from "react-native" but the expo team still hasn't issued an update on this in around a year. Reading around the forums, it seems that this will cause issues later when it comes to React-Natives new "web simulator" way of using a react-native app. Using tools that are not being maintained or updated is generally not a good idea in my opinion.
+1. Though Expo is a great tool to get something up and running quickly, I am depending on the expo team to update their library. This was made very obvious to me when it came to using AsyncStorage, which is deprecated from "react-native" but the expo team still hasn't issued an update on this in around a year. Reading around the forums, it seems that this will cause issues later when it comes to React-Natives new web simualtor. Using tools that are not being maintained or updated is generally not a good idea in my opinion.
 
-2. Solutions online tend to lean towards the user not initialising the project with expo. This can be frustrating as it requires further digging for the expo solution
+2. Solutions online tend to lean towards the dev not initialising the project with expo. This can be frustrating as it requires further digging for the expo solution
 
 3. I accept that there may be some things that expo handles to make a devs life easier but I am prepared to take on those hardships in exchange for dealing with tools that are not maintained or updated.
 
